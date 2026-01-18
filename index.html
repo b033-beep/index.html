@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>🎉 Happy Birthday Addy 🎉</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Montserrat:wght@400;700&display=swap');
+
+body {
+    margin:0;
+    font-family:'Montserrat', sans-serif;
+    background: radial-gradient(circle,#0b0026,#000);
+    color:white;
+    overflow:hidden;
+    text-align:center;
+}
+
+/* TAP MESSAGE */
+#tap {
+    margin-top:20px;
+    font-size:18px;
+    opacity:0.8;
+    text-shadow:0 0 10px #ff66ff;
+}
+
+/* REALISTIC GIFT BOX */
+#gift {
+    width:150px;
+    height:150px;
+    margin:80px auto;
+    position:relative;
+    cursor:pointer;
+    animation:bounce 1.5s infinite;
+    perspective:600px;
+}
+
+/* Gift base */
+#gift .box {
+    width:100%;
+    height:100%;
+    background:red;
+    border-radius:10px;
+    position:relative;
+    transform-style:preserve-3d;
+    box-shadow:0 0 20px #ff4444;
+}
+/* Ribbon vertical */
+#gift .box::before{
+    content:'';
+    position:absolute;
+    width:20px;
+    height:150px;
+    background:white;
+    left:50%;
+    transform:translateX(-50%);
+}
+/* Ribbon horizontal */
+#gift .box::after{
+    content:'';
+    position:absolute;
+    width:150px;
+    height:20px;
+    background:white;
+    top:50%;
+    transform:translateY(-50%);
+}
+/* Lid */
+#gift .lid{
+    width:160px;
+    height:40px;
+    background:#ff3333;
+    border-radius:10px 10px 0 0;
+    position:absolute;
+    top:-40px;
+    left:-5px;
+    transform-origin:bottom center;
+    transition:0.5s;
+    box-shadow:0 0 15px #ff66ff;
+}
+
+/* BOUNCE */
+@keyframes bounce{
+    0%,100%{transform:translateY(0);}
+    50%{transform:translateY(-20px);}
+}
+
+/* TITLE */
+#title{
+    font-family:'Pacifico', cursive;
+    font-size:55px;
+    margin-top:40px;
+    display:none;
+    color:#ff99ff;
+    animation:glow 2s infinite alternate;
+    text-shadow:0 0 10px #ff66ff,0 0 20px cyan,0 0 30px #ff66ff;
+}
+@keyframes glow{
+    0%{text-shadow:0 0 10px #ff66ff,0 0 20px cyan,0 0 25px #ff99ff;}
+    100%{text-shadow:0 0 25px #ff66ff,0 0 35px cyan,0 0 40px #ff99ff;}
+}
+
+/* WISHES */
+#wishCard{
+    width:75%;
+    margin:30px auto;
+    padding:30px;
+    border-radius:20px;
+    background:rgba(255,255,255,0.12);
+    backdrop-filter:blur(6px);
+    font-size:22px;
+    line-height:1.8;
+    display:none;
+    color:#ffe6f2;
+    box-shadow:0 0 20px #ff66ff;
+}
+
+/* BALLOONS */
+.balloon{
+    position:absolute;
+    bottom:-100px;
+    width:50px;
+    height:70px;
+    border-radius:50%;
+    animation:float 10s linear forwards, sway 3s ease-in-out infinite alternate;
+}
+.balloon::after{
+    content:'';
+    width:2px;
+    height:30px;
+    background:white;
+    position:absolute;
+    bottom:-30px;
+}
+@keyframes float{to{transform:translateY(-1200px);}}
+@keyframes sway{0%{transform:translateX(0);}50%{transform:translateX(15px);}100%{transform:translateX(0);}}
+
+/* AGE BEARS */
+#ageScene{
+    display:none;
+    margin-top:50px;
+    position:relative;
+    height:200px;
+}
+.bear{
+    width:80px;
+    height:80px;
+    background:#ffcc99;
+    border-radius:50% 50% 40% 40%;
+    position:absolute;
+    top:50%;
+    transform:translateY(-50%);
+    transition: all 2s ease;
+}
+.bear::before{
+    content:'';
+    position:absolute;
+    width:20px;
+    height:20px;
+    background:#ffcc99;
+    border-radius:50%;
+    top:-15px;
+    left:10px;
+}
+.bear::after{
+    content:'';
+    position:absolute;
+    width:20px;
+    height:20px;
+    background:#ffcc99;
+    border-radius:50%;
+    top:-15px;
+    right:10px;
+}
+
+/* CAKE */
+#cake{
+    display:none;
+    width:150px;
+    height:100px;
+    background:#ff9999;
+    margin:50px auto 0;
+    border-radius:10px 10px 0 0;
+    position:relative;
+}
+#cake::before{
+    content:'';
+    position:absolute;
+    top:-30px;
+    left:50%;
+    transform:translateX(-50%);
+    width:10px;
+    height:30px;
+    background:yellow;
+    border-radius:5px;
+    animation:flame 1s infinite alternate;
+}
+@keyframes flame{0%{opacity:1;}100%{opacity:0.3;}}
+
+/* KNIFE */
+#knife{
+    width:50px;
+    height:5px;
+    background:silver;
+    display:none;
+    position:absolute;
+    top:45%;
+    left:-100px;
+}
+
+/* FINAL MESSAGE */
+#final{
+    font-size:50px;
+    margin-top:50px;
+    display:none;
+    color:#ff99ff;
+    text-shadow:0 0 15px #ff66ff,0 0 25px cyan;
+    font-family:'Pacifico', cursive;
+}
+
+/* FIREWORK CANVAS */
+canvas{position:fixed;top:0;left:0;pointer-events:none;}
+</style>
+</head>
+<body>
+
+<div id="tap">Tap the screen ✨</div>
+
+<div id="gift">
+    <div class="lid"></div>
+    <div class="box"></div>
+</div>
+
+<h1 id="title">🎉 Happy Birthday Addy 🎉</h1>
+
+<div id="wishCard">
+<p class="wishLine">May Allah bless your life with endless happiness and success.</p>
+<p class="wishLine">Now officially 22! 🎂</p>
+<p class="wishLine">You are a precious gift to this world.</p>
+<p class="wishLine">May every dream in your heart come true.</p>
+<p class="wishLine">Keep shining, keep smiling, keep being amazing.</p>
+<p class="wishLine">May every new year of your life bring love, laughter, and joy.</p>
+<p class="wishLine">Always stay happy, healthy, and blessed. 💖</p>
+</div>
+
+<div id="ageScene">
+<div class="ageText" style="font-size:32px;">21 Years</div>
+<div class="bear" id="bear21" style="left:10%;"></div>
+<div class="bear" id="bearGroup" style="right:-40%;"></div>
+</div>
+
+<div id="cake"></div>
+<div id="knife"></div>
+
+<h1 id="final">🎉 HAPPY BIRTHDAY ONCE AGAIN 🎉</h1>
+
+<canvas id="fireworks"></canvas>
+
+<script>
+let scene=0;
+document.body.onclick=function(){
+    scene++;
+    if(scene===1) launchBalloons();
+    if(scene===2){gift.style.display='none'; title.style.display='block';}
+    if(scene===3){title.style.display='none'; gift.style.display='block';}
+    if(scene===4){gift.style.display='none'; showWishes();}
+    if(scene===5) startFireworks();
+    if(scene===6){hideWishes(); showAgeScene();}
+    if(scene===7){startBearAnimation();}
+    if(scene===8){hideAgeScene(); showCake();}
+    if(scene===9){cutCake();}
+    if(scene===10){hideCake(); showFinal();}
+};
+
+/* BALLOONS */
+function launchBalloons(){
+for(let i=0;i<30;i++){
+let b=document.createElement("div");
+b.className="balloon";
+b.style.left=Math.random()*95+"vw";
+b.style.background=['#ff0000','#ffcc00','#00ccff','#ff66cc','#66ff66'][Math.floor(Math.random()*5)];
+document.body.appendChild(b);
+}
+}
+
+/* FIREWORKS */
+const canvas=document.getElementById("fireworks");
+const ctx=canvas.getContext("2d");
+canvas.width=innerWidth;
+canvas.height=innerHeight;
+let particles=[];
+function startFireworks(){
+setInterval(()=>{
+let x=Math.random()*canvas.width;
+let y=Math.random()*canvas.height/2;
+for(let i=0;i<50;i++){
+particles.push({x,y,vx:(Math.random()-.5)*6,vy:(Math.random()-.5)*6,life:100,color:`hsl(${Math.random()*360},100%,60%)`});
+}
+},600);
+}
+function animate(){
+ctx.clearRect(0,0,canvas.width,canvas.height);
+particles.forEach((p,i)=>{
+p.x+=p.vx; p.y+=p.vy; p.vy+=.05; p.life--;
+ctx.fillStyle=p.color;
+ctx.beginPath();
+ctx.arc(p.x,p.y,2,0,Math.PI*2);
+ctx.fill();
+if(p.life<=0) particles.splice(i,1);
+});
+requestAnimationFrame(animate);
+}
+animate();
+
+/* WISHES */
+function showWishes(){
+let card=document.getElementById('wishCard');
+card.style.display='block';
+let lines=document.querySelectorAll('.wishLine');
+lines.forEach((line,i)=>{
+line.style.opacity=0;
+setTimeout(()=>{line.style.transition='1s'; line.style.opacity=1}, i*1000);
+});
+}
+function hideWishes(){document.getElementById('wishCard').style.display='none'}
+
+/* AGE */
+function showAgeScene(){document.getElementById('ageScene').style.display='block'}
+function hideAgeScene(){document.getElementById('ageScene').style.display='none'}
+function startBearAnimation(){
+let bear21=document.getElementById('bear21');
+let bearGroup=document.getElementById('bearGroup');
+let ageText=document.querySelector('#ageScene .ageText');
+bearGroup.style.right='15%'; 
+setTimeout(()=>{bear21.style.left='35%';},1000);
+setTimeout(()=>{ageText.innerText='22 Years';},2000);
+}
+
+/* CAKE */
+function showCake(){document.getElementById('cake').style.display='block'}
+function hideCake(){document.getElementById('cake').style.display='none'}
+function cutCake(){
+let knife=document.getElementById('knife');
+knife.style.display='block';
+knife.style.left='45%';
+}
+function showFinal(){document.getElementById('final').style.display='block'}
+</script>
+
+</body>
+</html>
